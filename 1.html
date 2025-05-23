@@ -1,40 +1,26 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ROT13 Расшифровка</title>
     <link rel="stylesheet" href="1.css">
-</head>
-<body>
+  <body>
     <h1>ROT13 Расшифровка</h1>
     
     <div class="container">
         <div class="panel">
-            <h2>Зашифрованный текст</h2>
-            <textarea id="encryptedText" placeholder="Введите зашифрованный текст ROT13..."></textarea>
-            <button id="decryptBtn">Расшифровать</button>
-            <div class="output" id="originalOutput"></div>
+            <h2>Исходный текст</h2>
+            <textarea id="inputArea"></textarea>
+            <button onclick="encoder()">Расшифровать (ROT13)</button>
         </div>
         
         <div class="panel">
-            <h2>Расшифрованный текст</h2>
-            <textarea id="decryptedText" readonly></textarea>
-            <div class="output" id="resultOutput"></div>
+            <h2>Результат</h2>
+            <textarea id="outputArea" readonly></textarea>
         </div>
-    </div>
-    
-    <div class="info-section">
-        <h2>Информация о ROT13</h2>
-        
-        <h3>Алфавит для преобразования:</h3>
-        <div class="alphabet-display" id="alphabetDisplay"></div>
-        
-        <h3>Процесс расшифровки:</h3>
-        <div class="process-steps" id="processInfo"></div>
     </div>
 
     <script src="1.js"></script>
-    
-</body>
+  </body>
 </html>
