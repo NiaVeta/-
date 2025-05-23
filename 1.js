@@ -1,71 +1,27 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
-                    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+function encoder() {
+    let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    let alphabetTopCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let inputText = document.getElementById('inputArea').value;
+    let result = '';
 
-    const alphabetDisplay = document.getElementById('alphabetDisplay');
-    alphabet.forEach(letter => {
-        const letterElement = document.createElement('div');
-        letterElement.className = 'alphabet-letter';
-        letterElement.textContent = letter;
-        alphabetDisplay.appendChild(letterElement);
-    });
-    
-    document.getElementById('decryptBtn').addEventListener('click', function() {
-        const encryptedText = document.getElementById('encryptedText').value;
-        const decryptedText = document.getElementById('decryptedText');
-        const originalOutput = document.getElementById('originalOutput');
-        const resultOutput = document.getElementById('resultOutput');
-        const processInfo = document.getElementById('processInfo');
+    for (let i = 0; i < inputText.length; i++) {
+        let char = inputText[i];
+        let index = alphabet.indexOf(char);
         
-        originalOutput.innerHTML = '';
-        resultOutput.innerHTML = '';
-        processInfo.innerHTML = '';
-        
-        const result = rot13Decrypt(encryptedText, alphabet);
-        decryptedText.value = result;
-        
-        originalOutput.innerHTML = '<strong>Зашифрованный текст:</strong> ' + encryptedText;
-        resultOutput.innerHTML = '<strong>Расшифрованный текст:</strong> ' + result;
-        
-        let infoHtml = '<div class="step"><strong>Принцип ROT13:</strong> каждая буква заменяется на букву, находящуюся через 13 позиций в алфавите.</div>';
-        infoHtml += '<div class="step"><strong>Особенность:</strong> так как в английском алфавите 26 букв, то ROT13 является самодостаточным (шифрование и расшифровка используют один алгоритм).</div>';
-        infoHtml += '<div class="step"><strong>Обработка:</strong> символы, не входящие в алфавит (цифры, спецсимволы) остаются без изменений.</div>';
-        
-        processInfo.innerHTML = infoHtml;
-    });
-    
-    function rot13Decrypt(str, alphabet) {
-        let result = '';
-        const len = str.length;
-        const alphabetLength = alphabet.length;
-        
-        for (let i = 0; i < len; i++) {
-            const char = str[i];
-            const upperChar = char.toUpperCase();
-            const isLower = char !== upperChar;
-            
-            let index = -1;
-            for (let j = 0; j < alphabetLength; j++) {
-                if (alphabet[j] === upperChar) {
-                    index = j;
-                    break;
-                }
-            }
-            
+        if (index >= 0) {
+            // Lowercase letter
+            result += alphabet[(index + 13) % 26];
+        } else {
+            index = alphabetTopCase.indexOf(char);
             if (index >= 0) {
-                let newIndex = (index + 13) % alphabetLength;
-                let newChar = alphabet[newIndex];
-                
-                if (isLower) {
-                    newChar = newChar.toLowerCase();
-                }
-                
-                result += newChar;
+                // Uppercase letter
+                result += alphabetTopCase[(index + 13) % 26];
             } else {
+                // Not an alphabet letter - keep as is
                 result += char;
             }
         }
-        
-        return result;
     }
-});
+    
+    document.getElementById('outputArea').value = result;
+}
