@@ -51,39 +51,22 @@ button {
 button:hover {
     background-color: #b929a3;
 }
-.output {
-    margin-top: 15px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 4px;
-    min-height: 50px;
-    border-left: 4px solid #b929a3;
+button:active {
+    background-color: #7c1e6e;
 }
-.info-section {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 20px;
-    margin-top: 20px;
+@media (max-width: 768px) {
+.panel{
+    width: 100%;
+    margin-bottom: 20px;
 }
-.alphabet-display {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin: 10px 0;
+   
+textarea{
+    height: 40vh;
 }
-.alphabet-letter {
-    padding: 5px;
-    background-color: #fce8fb;
-    border-radius: 3px;
-    text-align: center;
-    min-width: 20px;
+
+button{
+    width: 50%;
 }
-.process-steps {
-    margin-top: 20px;
 }
-.step {
-    margin-bottom: 10px;
-    padding-left: 15px;
-    border-left: 3px solid #b929a3;
-}
+
+
